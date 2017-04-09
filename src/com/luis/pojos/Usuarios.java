@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -12,7 +13,8 @@ import javax.persistence.Table;
 public class Usuarios {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="usuarios_app")
+	@GeneratedValue(generator="usuarios_app")
+	@SequenceGenerator(name="usuarios_app",sequenceName="usuarios_app", allocationSize=1) 
 	@Column(name="idUser")
 	private Integer id;
 	@Column(name="nombre")
@@ -28,9 +30,7 @@ public class Usuarios {
 		
 	}
 
-	public Usuarios(Integer id, String nombre, String app, String apm, Integer edad) {
-		
-		this.id = id;
+	public Usuarios( String nombre, String app, String apm, Integer edad) {
 		this.nombre = nombre;
 		this.app = app;
 		this.apm = apm;
